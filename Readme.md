@@ -22,5 +22,27 @@ General Instructions:
 - The main code is divided into multiple sections. The sections are named in SXX-YY format, where XX denotes the section number, and YY denotes the sub-section number.
 - Section 1 (S01-)
   - S01-01: 
-  - S01-02:
+  - S01-02: 
 - Section 2 (S02-) 
+  - S02-01: 
+  - S02-02: 
+  - S02-03: 
+  - S02-04: 
+- Section 3 (S02-) 
+  - S03-01: 
+  - S03-02: 
+  - S03-03: 
+  - S03-04: 
+  - S03-05: 
+- Section 4 (S02-) 
+  - S04-01: 
+  - S04-02: 
+  - S04-03: 
+  - S04-04: 
+  - S04-05: 
+  - S04-06: 
+  - S04-07: 
+  - S04-08: 
+- Section 5 (S02-) 
+  - S05-01: 
+  - S05-02: 
