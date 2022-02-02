@@ -16,13 +16,6 @@ library(reshape2)
 
 library(minpack.lm)
 
-source("D:/Project/Research/Scripts/R Codes/DecomposablePlots.R")
-source(paste0(functions_folder, 'functions_wf.R'))
-source(paste0(functions_folder, 'functions_wf_divergence.R'))
-source(paste0(functions_folder, 'functions_hypso.R'))
-source(paste0(functions_folder, 'functions_supplementary.R'))
-source(paste0(functions_folder, 'functions_cross_plot.R'))
-
 working_folder <- 'D:/Project/Research/Paper 4 Parameters'
 output_folder <- 'D:/Project/Research/Paper 4 Parameters/Outputs/'
 functions_folder <- 'D:/Project/Research/Scripts/R Codes/'
@@ -35,6 +28,13 @@ pptx_file <- paste0(output_folder, 'Plots.pptx')
 pptx_base_file <- paste0(output_folder, 'PlotsBase.pptx')
 
 setwd(working_folder)
+
+source(paste0(functions_folder, 'functions_hypso.R'))
+source(paste0(functions_folder, 'functions_wf.R'))
+source(paste0(functions_folder, 'functions_wf_divergence.R'))
+source(paste0(functions_folder, 'functions_supplementary.R'))
+source(paste0(functions_folder, 'functions_cross_plot.R'))
+source(paste0(functions_folder, 'DecomposablePlots.R'))
 
 basins_VS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/Stream/Basins.shp"
 flowLength_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/flowL_clip.tif"
@@ -128,7 +128,7 @@ n_mix_current <- 2
 #   clusters_agnes_l2 <- readRDS('clusters_agnes_l2_nmix5_02.RDS')
 # }
 #
-# S02-01 Read raster data and convert to R data #######################################################################
+# S02-01 Read GIS data and convert to R data #######################################################################
 
 library(raster)
 library(reticulate)
