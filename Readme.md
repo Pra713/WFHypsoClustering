@@ -15,7 +15,8 @@ Files:
 - functions_cross_plot: This file has the codes to make the cross plot between hypsometric and width function clusters.
 
 General Instructions:
-- The code is divided into multiple sections. The sections are named in SXX-YY format, where XX denotes the section number, and YY denotes the sub-section number.
+- You only need to run the main code. This is the file, "WFandHypsoClustering". All other files contain functions for specific tasks while this file reads those functions and performs the analyses.
+- The main code is divided into multiple sections. The sections are named in SXX-YY format, where XX denotes the section number, and YY denotes the sub-section number.
 - Section 1 (S01-)
   - S01-01: 
   - S01-02:
