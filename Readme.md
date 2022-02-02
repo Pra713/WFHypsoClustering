@@ -31,21 +31,20 @@ General Instructions:
   - S02-01: ArcGIS desktop's ArcPy script is used here to extract the terrain data for each sub-basin separately. If you prefer to do this in a different way, you can then use the clipped DEMs (for each sub-basins) as the inputs instead and skip the GIS section of the code.
   - S02-02: The extracted sub-basin data is then converted to data frame format.
   - S02-03: The spatial sub-basin data is them summarized into sub-basins statistics such as minimum and maximum elevation.
-- Section 3 (S02-) 
-  - S03-01: 
-  - S03-02: 
-  - S03-03: 
-  - S03-04: 
-  - S03-05: 
-- Section 4 (S02-) 
-  - S04-01: 
-  - S04-02: 
-  - S04-03: 
-  - S04-04: 
-  - S04-05: 
-  - S04-06: 
-  - S04-07: 
-  - S04-08: 
-- Section 5 (S02-) 
+- Section 3 (S03-) 
+  - S03-01: This section has the code to perform the functional estimation of hypsometric curves.
+  - S03-02: The functional estimation parameters are then tabulated here. Additionally, hypsometric curves at 0.01 intervals in x axis are generated from the fitted hypsometric function.
+  - S03-03: Next, a distance matrix is created based on the discordance index.
+  - S03-04: The sub-basins are then grouped using hierarchical clustering. A variety of algorithms are tested (average, single, complete, and ward). The best algorithm can then be chosen based on agglomerative coefficient.
+  - S03-05: Outliers are removed here. A variety of methods are provided. In the end, the choice of threshold for outlier removal requires some subjective judgement.
+  - S03-06: Code for plotting the results of hypsometric clustering. The codes are plotted on-screen, but can be output as image files (png, etc.) or as pptx files.
+- Section 4 (S04-) 
+  - S04-01: This section has the code to perform the functional estimation of width functions.
+  - S04-02: The functional estimation parameters are then tabulated here. Additionally, width functions at 0.01 intervals in x axis are computed from the fitted width function.
+  - S04-03: Next, a distance matrix is created based on the discordance index.
+  - S04-04: The sub-basins are then grouped using hierarchical clustering. A variety of algorithms are tested (average, single, complete, and ward). The best algorithm can then be chosen based on agglomerative coefficient.
+  - S04-05: Outliers are removed here. A variety of methods are provided. In the end, the choice of threshold for outlier removal requires some subjective judgement.
+  - S04-06: Code for plotting the results of width function clustering. The codes are plotted on-screen, but can be output as image files (png, etc.) or as pptx files.
+- Section 5 (S05-) 
   - S05-01: The width function and hypsometric function data are combined into a single data frame.
   - S05-02: This section has code to make entanglement plots and cross plots between hypsometric and width function clusters.
