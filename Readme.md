@@ -1,10 +1,12 @@
 The script for this analysis was written in R. GIS analysis was performed in ArcGIS Desktop. However, the GIS analysis can be done in any GIS program.
 
+If anyone faces issues when running this program, please feel free to email me about any questions to prashanta.bajracharya@maine.edu. I am happy to answer any questions and/ or assist with the code.
+
 Prerequisites:
 - An IDE for R. I prefer to use RStudio.
 - Required packages in R: tidyverse, gridExtra, rgdal, raster, reticule, princurve, cluster, factoextra, dendextend, reshape2, minpack.lm, sn, mixsmsn
 - Raw GIS files. These files include the DEM raster file and the sub-basins shape file.
-- A GIS program that can run terrain analysis tools. These tools include filling sinks, flow direction, flow accumulation, and flow length analysis. I use ArcGIS and have provided ArcPy codes to perform these analysis in R. If you want to run these tools in your preferred GIS program, you can use the outputs of these tools as input to the R script and skip the GIS section of the script.
+- A GIS program that can run spatial analysis and terrain analysis tools. 
 
 Files:
 - WFandHypsoClustering: This is the main file to run all of the analysis. This file reads the functions in other R files using the "source" function.
@@ -19,9 +21,11 @@ General Instructions:
 - You only need to run the main code. This is the file, "WFandHypsoClustering". All other files contain functions for specific tasks while this file reads those functions and performs the analyses.
 - After every analysis, the output files are saved as RDS files. This prevents the need to run these analysis in every session. Once the RDS file has been saved, the prior analysis can be skipped and the RDS file can be read instead.
 - Plots made during the analysis are saved as either png files or pptx files. The code provides an options whether to save the pptx files not not. This can be skipped if desired.
+- I ran the terrain analysis tools for filling sinks, flow direction, flow accumulation, slope, and flow length analysis in ArcGIS. If you want to run these tools in your preferred GIS program, you can use the outputs of these tools as input to the R script. 
+- I use ArcGIS desktop's ArcPy script to extract the terrain data for each sub-basin separately. If you prefer to do this in a different way, you can then use the clipped DEMs (for each sub-basins) as the inputs instead and skip the GIS section of the code.
 - The main code is divided into multiple sections. The sections are named in SXX-YY format, where XX denotes the section number, and YY denotes the sub-section number.
 - Section 1 (S01-)
-  - S01-01: 
+  - S01-01: This section loads all the necessary packages and reads other function files. Additinally, this section also sets the file and folder locations. This includes the location for the GIS files (sub-basins vector file, DEM, flow accumulation raster, slope raster, and flow length raster) as input files, output folder locations, and other parameters. More information is available as comments in the code.
   - S01-02: 
 - Section 2 (S02-) 
   - S02-01: 
