@@ -16,16 +16,16 @@ library(reshape2)
 
 library(minpack.lm)
 
-working_folder <- 'D:/Project/Research/Paper 4 Parameters'
-output_folder <- 'D:/Project/Research/Paper 4 Parameters/Outputs/'
-functions_folder <- 'D:/Project/Research/Scripts/R Codes/'
-gis_folder <- 'D:/Project/Research/GlobalStorage/GIS/DataGlobal/Temp/arcpyTemp'
-gis_gdb <- 'D:/Project/Research/GlobalStorage/GIS/DataGlobal/Temp/arcpyTemp.gdb'
-arcpy_exe <- 'C:/Python27/ArcGIS10.5/python.exe'
+working_folder <- 'D:/Project/Research/Paper 4 Parameters' # Working folder
+output_folder <- 'D:/Project/Research/Paper 4 Parameters/Outputs/' # Folder where plots are made
+functions_folder <- 'D:/Project/Research/Scripts/R Codes/' # Folder where other function files are located
+gis_folder <- 'D:/Project/Research/GlobalStorage/GIS/DataGlobal/Temp/arcpyTemp' # Folder where output of GIS processing is to be stored
+gis_gdb <- 'D:/Project/Research/GlobalStorage/GIS/DataGlobal/Temp/arcpyTemp.gdb' # GDB where output of GIS processing is to be stored
+arcpy_exe <- 'C:/Python27/ArcGIS10.5/python.exe' # Location of the python exectable of ArcGIS desktop
 
-output_pptx <- 0
-pptx_file <- paste0(output_folder, 'Plots.pptx')
-pptx_base_file <- paste0(output_folder, 'PlotsBase.pptx')
+output_pptx <- 0 # 1 means make plots in pptx file, 0 means don't make plots in pptx file
+pptx_file <- paste0(output_folder, 'Plots.pptx') # pptx file where plot is to be made
+pptx_base_file <- paste0(output_folder, 'PlotsBase.pptx') # pptx file where any intermediate plot is to be made
 
 setwd(working_folder)
 
@@ -36,24 +36,24 @@ source(paste0(functions_folder, 'functions_supplementary.R'))
 source(paste0(functions_folder, 'functions_cross_plot.R'))
 source(paste0(functions_folder, 'DecomposablePlots.R'))
 
-basins_VS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/Stream/Basins.shp"
-flowLength_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/flowL_clip.tif"
-fil_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/fil_clip.tif"
-fac_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/fac_clip.tif"
-slope_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/slope_d_clip.tif"
+basins_VS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/Stream/Basins.shp" # sub-basin polygon vector
+fil_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/fil_clip.tif" # DEM raster
+fac_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/fac_clip.tif" # Flow accumulation raster
+slope_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/slope_d_clip.tif" # Slope raster (in degrees)
+flowLength_RS <- "D:/Project/Research/GlobalStorage/GIS/DataNarmada/DEMPra/flowL_clip.tif" # Flow length raster
 
-watersheds <- 1
-basin_ids <- list(1:72)
+watersheds <- c(1) # If there are multiple watersheds, number them in this vector
+basin_ids <- list(1:72) # If there are multiple watersheds, add multiple elemeents to the list sequentially (eg. list(1:72, 1:221))
 basin_ids_string <- list(as.character(basin_ids[[1]]))
 df_watersheds <- data.frame(watershed = watersheds,
-                            watershed_name = c('Narmada'))
+                            watershed_name = c('Narmada')) # If there are multiple watersheds, add multiple elemeents to this column
 
-watershed_current <- 1
+watershed_current <- 1 # Which watershed you want to run the analysis for (plots)
 watershed_name_current <- df_watersheds %>% 
   filter(watershed == watershed_current) %>% 
   pull(watershed_name)
 
-n_mix_current <- 2
+n_mix_current <- 2 # Number of mixtures for the mSN width function model (recomended 2 or 3)
 
 # S01-02 Data ##########################################################################################################
 
@@ -306,8 +306,6 @@ df_basin_data_summary <- df_basin_data %>%
 df_basin_data_summary %>%
   saveRDS('df_basin_data_summary.RDS', version = 2)
 
-# S02-04 Additional basin summary data #############################################################################################################
-
 temp_df_basin_data_summary_additional <- df_basin_data %>% 
   group_by(watershed, basin_id) %>% 
   summarize(elevation_m_mean = mean(elevation_m),
@@ -362,7 +360,7 @@ df_basin_data_summary <- df_basin_data_summary %>%
 df_basin_data_summary %>% 
   saveRDS('df_basin_data_summary2.RDS')
 
-# S03-01 Hypsometric formulations parameter estimation (SKIP IF DONE) ###########################################################################################
+# S03-01 Hypsometric formulations parameter estimation ##########################################################################################################
 
 list_hypso_nls_formulations <- list()
 nls_formula <- y ~ ((r*(1-x^m)/((1-r)*x^m+r))^z)
@@ -776,7 +774,7 @@ df_hypso_cluster <- df_hypso_cluster %>%
 df_hypso_cluster %>% 
   saveRDS('df_hypso_cluster2.RDS')
 
-# S04-01 Plotting Hypsometry clusters ###################################################################################
+# S03-06 Plotting Hypsometry clusters ###################################################################################
 
 clusGap_di %>%
   fviz_gap_stat_pra(paste0('Gap statistic for hypsometric clusters')) +
@@ -1067,7 +1065,7 @@ if (output_pptx == 1)
 }
 
 #
-# S04-02 Width Function Parameters #####################################################################################
+# S04-01 Width Function Parameters #####################################################################################
 
 snorm_list <- list()
 for (watershed_current in watersheds)
@@ -1097,7 +1095,9 @@ for (watershed_current in watersheds)
 snorm_list %>%
   saveRDS('snorm_list_nmix5_01.RDS')
 
-# S04-03 Width Function parameters to dataframe ########################################################################
+# S04-02 Width Function data and table #################################################################################
+
+# Parameters table
 
 df_sn_params <- list()
 for (mix_n in c(1:3))
@@ -1133,7 +1133,7 @@ df_sn_params %>%
 #     write_csv(paste0('SN',mix_n ,'_params.csv'))
 # }
 
-# S04-04 WF data table ##################################################################################################
+# Data table
 
 df_sn_values <- list()
 for (watershed_current in watersheds)
@@ -1170,7 +1170,7 @@ for (watershed_current in watersheds)
 df_sn_values_main %>% 
   saveRDS('df_sn_values_main_nmix3_02.RDS')
 
-# S04-05 Width Function distance matrix #################################################################################
+# S04-02 Width Function distance matrix #################################################################################
 
 # DI pairs for distance matrix
 
@@ -1195,7 +1195,7 @@ for (watershed_current in watersheds)
 df_wf_pairs %>% 
   saveRDS('df_wf_pairs_nmix3_02.RDS')
 
-# S04-06 Clustering with width function #################################################################################
+# S04-04 Clustering with width function #################################################################################
 
 # Clustering
 
@@ -1231,7 +1231,7 @@ sapply(m, ac, 1)
 sapply(m, ac, 2)
 sapply(m, ac, 3)
 
-# S04-07 Clustering groups and outliers analysis ########################################################################
+# S04-05 Clustering groups and outliers analysis ########################################################################
 
 watershed_current <- 1
 
@@ -1657,7 +1657,7 @@ df_clusters_wf %>%
   facet_wrap(~cluster, nrow = 3)
 # ggsave(filename = foldered_png('Clusters Representative WF'), width = 7, height = 4.8)
 
-# S04-08 Plotting Width Function clusters ##############################################################################
+# S04-06 Plotting Width Function clusters ##############################################################################
 
 df_clusters_wf_outliers <- readRDS('df_clusters_wf_outliers.RDS')
 
