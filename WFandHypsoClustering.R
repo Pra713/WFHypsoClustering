@@ -776,7 +776,7 @@ df_hypso_cluster <- df_hypso_cluster %>%
 df_hypso_cluster %>% 
   saveRDS('df_hypso_cluster2.RDS')
 
-# S05-01 Plotting Hypsometry clusters ###################################################################################
+# S04-01 Plotting Hypsometry clusters ###################################################################################
 
 clusGap_di %>%
   fviz_gap_stat_pra(paste0('Gap statistic for hypsometric clusters')) +
@@ -1067,7 +1067,7 @@ if (output_pptx == 1)
 }
 
 #
-# S05-02 Width Function Parameters #####################################################################################
+# S04-02 Width Function Parameters #####################################################################################
 
 snorm_list <- list()
 for (watershed_current in watersheds)
@@ -1097,7 +1097,7 @@ for (watershed_current in watersheds)
 snorm_list %>%
   saveRDS('snorm_list_nmix5_01.RDS')
 
-# S05-03 Width Function parameters to dataframe ########################################################################
+# S04-03 Width Function parameters to dataframe ########################################################################
 
 df_sn_params <- list()
 for (mix_n in c(1:3))
@@ -1133,7 +1133,7 @@ df_sn_params %>%
 #     write_csv(paste0('SN',mix_n ,'_params.csv'))
 # }
 
-# S05-04 WF data table ##################################################################################################
+# S04-04 WF data table ##################################################################################################
 
 df_sn_values <- list()
 for (watershed_current in watersheds)
@@ -1170,7 +1170,7 @@ for (watershed_current in watersheds)
 df_sn_values_main %>% 
   saveRDS('df_sn_values_main_nmix3_02.RDS')
 
-# S05-05 Width Function distance matrix #################################################################################
+# S04-05 Width Function distance matrix #################################################################################
 
 # DI pairs for distance matrix
 
@@ -1195,7 +1195,7 @@ for (watershed_current in watersheds)
 df_wf_pairs %>% 
   saveRDS('df_wf_pairs_nmix3_02.RDS')
 
-# S05-06 Clustering with width function #################################################################################
+# S04-06 Clustering with width function #################################################################################
 
 # Clustering
 
@@ -1231,7 +1231,7 @@ sapply(m, ac, 1)
 sapply(m, ac, 2)
 sapply(m, ac, 3)
 
-# S05-07 Clustering groups and outliers analysis ########################################################################
+# S04-07 Clustering groups and outliers analysis ########################################################################
 
 watershed_current <- 1
 
@@ -1657,7 +1657,7 @@ df_clusters_wf %>%
   facet_wrap(~cluster, nrow = 3)
 # ggsave(filename = foldered_png('Clusters Representative WF'), width = 7, height = 4.8)
 
-# S05-08 Plotting Width Function clusters ##############################################################################
+# S04-08 Plotting Width Function clusters ##############################################################################
 
 df_clusters_wf_outliers <- readRDS('df_clusters_wf_outliers.RDS')
 
@@ -2032,7 +2032,7 @@ if (output_pptx == 1)
 # }
 
 #
-# S06-01 Combine Hypso Cluster and WF Cluster ##########################################################################
+# S05-01 Combine Hypso Cluster and WF Cluster ##########################################################################
 
 watershed_current <- 1
 df_cluster_hypso_wf <- df_cluster_di %>% 
@@ -2046,7 +2046,7 @@ df_cluster_hypso_wf <- df_cluster_di %>%
 df_cluster_hypso_wf %>% 
   saveRDS('df_cluster_hypso_wf_02.RDS')
 
-# S06-02 Entanglement between DI and L2 clusters #######################################################################
+# S05-02 Entanglement between DI and L2 clusters #######################################################################
 
 # Entanglement Plots
 
