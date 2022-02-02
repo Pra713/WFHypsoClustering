@@ -26,12 +26,11 @@ General Instructions:
 - The main code is divided into multiple sections. The sections are named in SXX-YY format, where XX denotes the section number, and YY denotes the sub-section number.
 - Section 1 (S01-)
   - S01-01: This section loads all the necessary packages and reads other function files. Additinally, this section also sets the file and folder locations. This includes the location for the GIS files (sub-basins vector file, DEM, flow accumulation raster, slope raster, and flow length raster) as input files, output folder locations, and other parameters. More information is available as comments in the code.
-  - S01-02: 
+  - S01-02: Once you have run some of the code in later sections, they are then saved as RDS files so that the same code does not need to be run in later R sessions. Instead of rerunning the code, you can just read the saved RDS files.
 - Section 2 (S02-) 
-  - S02-01: 
-  - S02-02: 
-  - S02-03: 
-  - S02-04: 
+  - S02-01: ArcGIS desktop's ArcPy script is used here to extract the terrain data for each sub-basin separately. If you prefer to do this in a different way, you can then use the clipped DEMs (for each sub-basins) as the inputs instead and skip the GIS section of the code.
+  - S02-02: The extracted sub-basin data is then converted to data frame format.
+  - S02-03: The spatial sub-basin data is them summarized into sub-basins statistics such as minimum and maximum elevation.
 - Section 3 (S02-) 
   - S03-01: 
   - S03-02: 
@@ -48,5 +47,5 @@ General Instructions:
   - S04-07: 
   - S04-08: 
 - Section 5 (S02-) 
-  - S05-01: 
-  - S05-02: 
+  - S05-01: The width function and hypsometric function data are combined into a single data frame.
+  - S05-02: This section has code to make entanglement plots and cross plots between hypsometric and width function clusters.
